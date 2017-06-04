@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Stopwatch
@@ -9,25 +9,25 @@ namespace Stopwatch
         private DateTime _start;
         private DateTime _stop;
         private bool _hasStarted;
-        private readonly List<TimeSpan> _totalDuration;
+        private readonly List<TimeSpan> _durationIntervals;
 
         public TimeSpan Duration
         {
             get
             {
-                var sum = TimeSpan.Zero;
-                foreach (TimeSpan timeSpan in _totalDuration)
+                var totalDuration = TimeSpan.Zero;
+                foreach (TimeSpan timeSpan in _durationIntervals)
                 {
-                    sum += timeSpan;
+                    totalDuration += timeSpan;
                 }
-                return sum;
+                return totalDuration;
             }
         }
 
         public Stopwatch()
         {
             _hasStarted = false;
-            _totalDuration = new List<TimeSpan>();
+            _durationIntervals = new List<TimeSpan>();
         }
 
 
@@ -57,7 +57,7 @@ namespace Stopwatch
 
         private void AddDurationToList()
         {
-            _totalDuration.Add(_stop - _start);
+            _durationIntervals.Add(_stop - _start);
         }
 
     }
